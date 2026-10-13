@@ -1,0 +1,445 @@
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: Inter, "Segoe UI", Arial, sans-serif;
+  background: #f4f6fb;
+  color: #202943;
+}
+
+button, input, select, textarea {
+  font: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+.app {
+  min-height: 100vh;
+}
+
+.sidebar {
+  width: 240px;
+  background: #171d35;
+  color: white;
+  position: fixed;
+  inset: 0 auto 0 0;
+  padding: 28px 18px;
+  display: flex;
+  flex-direction: column;
+  z-index: 2;
+}
+
+.sidebar h2 {
+  font-size: 23px;
+  margin: 0 0 40px;
+}
+
+.side-label {
+  color: #939bb7;
+  font-size: 11px;
+  letter-spacing: 2px;
+  margin: 0 0 15px 12px;
+}
+
+.nav-item {
+  padding: 14px 15px;
+  border-radius: 9px;
+  margin-bottom: 8px;
+  color: #cbd1e4;
+}
+
+.nav-item.active {
+  color: white;
+  background: #5265ed;
+}
+
+.sidebar-bottom {
+  margin-top: auto;
+  font-size: 12px;
+  color: #aab1ca;
+}
+
+.main {
+  margin-left: 240px;
+  padding: 35px;
+}
+
+.topbar, .panel-header, .modal-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.topbar h1 {
+  font-size: 30px;
+  margin: 0 0 8px;
+}
+
+.topbar p, .panel-header p {
+  color: #858da4;
+  margin: 0;
+}
+
+.primary-btn {
+  border: none;
+  border-radius: 9px;
+  padding: 13px 18px;
+  background: #5265ed;
+  color: white;
+  font-weight: 600;
+  box-shadow: 0 5px 15px #5265ed30;
+  transition: transform .2s, background .2s;
+}
+
+.primary-btn:hover {
+  background: #3f51d7;
+  transform: translateY(-2px);
+}
+
+.secondary-btn {
+  padding: 10px 14px;
+  border: 1px solid #e1e5ef;
+  background: white;
+  border-radius: 8px;
+  color: #404a65;
+}
+
+.stats {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 18px;
+  margin: 30px 0;
+}
+
+.stat-card, .complaints-panel {
+  background: white;
+  border: 1px solid #eaedf5;
+  border-radius: 15px;
+  padding: 22px;
+  box-shadow: 0 8px 25px #20294308;
+}
+
+.stat-card {
+  transition: transform .2s, box-shadow .2s;
+  animation: appear .5s ease both;
+}
+
+.stat-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 25px #20294312;
+}
+
+.stat-card span {
+  color: #7d859c;
+  font-size: 13px;
+}
+
+.stat-card h2 {
+  font-size: 31px;
+  margin: 14px 0 8px;
+}
+
+.stat-card small {
+  color: #9299ab;
+}
+
+.complaints-panel {
+  min-height: 280px;
+  animation: appear .6s ease both;
+}
+
+.panel-header {
+  margin-bottom: 24px;
+}
+
+.panel-header h2 {
+  margin: 0 0 8px;
+  font-size: 20px;
+}
+
+.table-wrap {
+  width: 100%;
+  overflow-x: auto;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+  white-space: nowrap;
+}
+
+th {
+  color: #838ba1;
+  background: #f8f9fc;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: .5px;
+}
+
+th, td {
+  padding: 16px 12px;
+  border-bottom: 1px solid #edf0f6;
+}
+
+td {
+  font-size: 13px;
+}
+
+.description {
+  display: block;
+  max-width: 200px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  color: #9299ab;
+  margin-top: 5px;
+}
+
+.status {
+  display: inline-block;
+  border-radius: 20px;
+  padding: 7px 10px;
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.status.pending {
+  background: #fff2d9;
+  color: #a66a00;
+}
+
+.status.in_progress {
+  background: #e6edff;
+  color: #3658d8;
+}
+
+.status.resolved {
+  background: #dff7e9;
+  color: #19834c;
+}
+
+td select {
+  border: 1px solid #dfe4ef;
+  background: white;
+  padding: 7px;
+  border-radius: 6px;
+  max-width: 125px;
+}
+
+.delete-btn {
+  border: none;
+  color: #d74646;
+  background: transparent;
+  margin-left: 5px;
+  padding: 7px;
+}
+
+.empty-state {
+  padding: 40px 10px;
+  text-align: center;
+  color: #858da4;
+}
+
+.empty-state h3 {
+  color: #303a56;
+}
+
+.error-message {
+  padding: 20px;
+  border-radius: 10px;
+  background: #fff0f0;
+  color: #b52d2d;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+}
+
+.modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: #11182c99;
+  backdrop-filter: blur(5px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  z-index: 10;
+  animation: appear .2s ease;
+}
+
+.modal {
+  width: 100%;
+  max-width: 520px;
+  max-height: 90vh;
+  overflow-y: auto;
+  background: white;
+  border-radius: 16px;
+  padding: 27px;
+  box-shadow: 0 25px 80px #0003;
+  animation: slideUp .3s ease;
+}
+
+.modal-heading {
+  margin-bottom: 20px;
+}
+
+.modal-heading h2 {
+  margin: 0;
+}
+
+.close-btn {
+  border: none;
+  background: #f0f2f8;
+  border-radius: 8px;
+  font-size: 25px;
+  width: 36px;
+  height: 36px;
+}
+
+.modal form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.modal label {
+  margin-top: 7px;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.modal input, .modal select, .modal textarea {
+  width: 100%;
+  border: 1px solid #dfe4ef;
+  border-radius: 8px;
+  padding: 12px;
+  outline: none;
+  background: white;
+}
+
+.modal input:focus, .modal select:focus, .modal textarea:focus {
+  border-color: #5265ed;
+  box-shadow: 0 0 0 3px #5265ed18;
+}
+
+.full-btn {
+  margin-top: 12px;
+}
+
+@keyframes appear {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(15px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@media (max-width: 1100px) {
+  .stats {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .main {
+    padding: 24px;
+  }
+}
+
+@media (max-width: 700px) {
+  .sidebar {
+    position: static;
+    width: 100%;
+    padding: 18px;
+  }
+
+  .sidebar h2 {
+    margin-bottom: 18px;
+  }
+
+  .side-label, .sidebar-bottom {
+    display: none;
+  }
+
+  .nav-item {
+    display: inline-block;
+    margin: 0 5px 0 0;
+    padding: 10px;
+  }
+
+  .main {
+    margin-left: 0;
+    padding: 18px;
+  }
+
+  .topbar {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .stats {
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+  }
+
+  .stat-card {
+    padding: 16px;
+  }
+
+  .stat-card h2 {
+    font-size: 25px;
+  }
+}
+
+@media (max-width: 400px) {
+  .stats {
+    grid-template-columns: 1fr;
+  }
+}
+
+
+/* Fix text visibility in complaint form fields */
+.modal input,
+.modal select,
+.modal textarea {
+  background-color: #ffffff !important;
+  color: #202943 !important;
+  border: 1px solid #cbd5e1;
+  caret-color: #5265ed;
+}
+
+/* Placeholder text */
+.modal input::placeholder,
+.modal textarea::placeholder {
+  color: #94a3b8 !important;
+  opacity: 1;
+}
+
+/* Dropdown options */
+.modal select option {
+  background-color: #ffffff;
+  color: #202943;
+}
+
+/* Text while typing or selecting a field */
+.modal input:focus,
+.modal select:focus,
+.modal textarea:focus {
+  background-color: #ffffff !important;
+  color: #202943 !important;
+  border-color: #5265ed;
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(82, 101, 237, 0.15);
+}
+
+/* Ensure labels are visible */
+.modal label {
+  color: #202943 !important;
+}
